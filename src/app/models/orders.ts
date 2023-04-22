@@ -1,12 +1,19 @@
-import { IOrderedConfectionery } from "./orderedConfectionery"
+import { OrderedConfectionery } from "./orderedConfectionery"
 
-export interface IOrders {
+export class Orders {
     id: number
     orderNumber: number
-    orderedConfectioneries: {
-        [index: number]: IOrderedConfectionery
-    }
+    orderedConfectioneries: { [index: number]: OrderedConfectionery }
     startReady: boolean
     serveReady: boolean
-    candyShopId:number
+    candyShopId: number
+
+    constructor(id_: number, orderNumber_: number, orderConfectioneries_: OrderedConfectionery[], startReady_: boolean, serveReady_: boolean, candyShopId_: number) {
+        this.id = id_
+        this.orderNumber = orderNumber_
+        this.orderedConfectioneries = JSON.parse(JSON.stringify(orderConfectioneries_))
+        this.startReady = startReady_
+        this.serveReady = serveReady_
+        this.candyShopId = candyShopId_
+    }
 }

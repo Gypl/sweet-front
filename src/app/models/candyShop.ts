@@ -1,25 +1,42 @@
-import { IConfectionery } from "./confectionery"
-import { IFlowSheet } from "./flowSheet"
-import { IOrders } from "./orders"
-import { IPurchase } from "./purchase"
-import { IResource } from "./resource"
+import { Confectionery } from "./confectionery"
+import { FlowSheet } from "./flowSheet"
+import { Orders } from "./orders"
+import { Purchase } from "./purchase"
+import { Resource } from "./resource"
 
-export interface ICandyShop {
+export class CandyShop {
     id: number
     name: string
     flowSteets: {
-        [index: number]: IFlowSheet
+        [index: number]: FlowSheet
     }
     resources: {
-        [index: number]: IResource
+        [index: number]: Resource
     }
     confectioneries: {
-        [index: number]: IConfectionery
+        [index: number]: Confectionery
     }
     purchases: {
-        [index: number]: IPurchase
+        [index: number]: Purchase
     }
     orders: {
-        [index: number]: IOrders
+        [index: number]: Orders
+    }
+
+    constructor(
+        id_: number,
+        name_: string,
+        flowSteets_: { [index: number]: FlowSheet },
+        resources_: { [index: number]: Resource },
+        confectioneries_: { [index: number]: Confectionery },
+        purchases_: { [index: number]: Purchase },
+        orders_: { [index: number]: Orders }) {
+            this.id = id_
+            this.name = name_
+            this.flowSteets = flowSteets_
+            this.resources = resources_
+            this.confectioneries = confectioneries_
+            this.purchases = purchases_
+            this.orders = orders_
     }
 }
