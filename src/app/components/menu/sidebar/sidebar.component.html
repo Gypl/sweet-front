@@ -92,34 +92,34 @@
     </symbol>
   </svg>
 
-  <main class="d-flex flex-nowrap">
+  <main class="d-flex flex-nowrap" style="z-index: 2;">
     <div
       class="d-flex flex-column flex-shrink-0 p-3 text-bg-dark"
       style="width: 280px"
     >
-      <span class="fs-4"> Sidebar</span>
+      <h3 > Ваши кандитерские</h3>
       <hr />
       <ul class="nav nav-pills flex-column mb-auto">
         <li class="nav-item">
-          <a routerLink="/home" routerLinkActive="false" class="nav-link text-white" aria-current="page"> Домашняя страница </a>
+          <a routerLink="home" (mouseenter)="mouseInHome()" (mouseleave)="mouseOutHome()" id="homeComponId" routerLinkActive="active" class="{{homeActive}}" aria-current="page"> Домашняя страница </a>
         </li>
         <li>
-          <a routerLink="/home" routerLinkActive="active" class="nav-link text-white"> Кандитерская </a>
+          <a routerLink="candyShop" (mouseenter)="mouseInShop()" (mouseleave)="mouseOutShop()" id="shopComponId" routerLinkActive="active" class="{{candyShopActive}}"> Кандитерская </a>
         </li>
         <li>
-          <a routerLink="/home" routerLinkActive="false" class="nav-link text-white"> Рецепты </a>
+          <a routerLink="flowSheet" (mouseenter)="mouseInFlowSheet()" (mouseleave)="mouseOutFlowSheet()" id="sheetComponId" routerLinkActive="active" class="{{flowSheetActive}}"> Рецепты </a>
         </li>
         <li>
-          <a routerLink="/home" routerLinkActive="false" class="nav-link text-white"> Изделия </a>
+          <a routerLink="confectionery" (mouseenter)="mouseInConfectionery()" (mouseleave)="mouseOutConfectionery()" id="confComponId" routerLinkActive="active" class="{{confectioneryActive}}"> Изделия </a>
         </li>
         <li>
-          <a routerLink="/home" routerLinkActive="false" class="nav-link text-white"> Ресурсы на складе </a>
+          <a routerLink="resource" (mouseenter)="mouseInResource()" (mouseleave)="mouseOutResource()" id="resComponId" routerLinkActive="active" class="{{resourceActive}}"> Ресурсы на складе </a>
         </li>
         <li>
-          <a routerLink="/home" routerLinkActive="false" class="nav-link text-white"> Закупки </a>
+          <a routerLink="purchase" (mouseenter)="mouseInPurchase()" (mouseleave)="mouseOutPurchase()" id="purComponId" routerLinkActive="active" class="{{purchaseActive}}"> Закупки </a>
         </li>
         <li>
-          <a routerLink="/home" routerLinkActive="false" class="nav-link text-white"> Заказы </a>
+          <a routerLink="orders" (mouseenter)="mouseInOrders()" (mouseleave)="mouseOutOrders()" id="ordersComponId" routerLinkActive="active" class="{{ordersActive}}"> Заказы </a>
         </li>
       </ul>
       <hr />

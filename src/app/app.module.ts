@@ -25,6 +25,7 @@ import { OrdersOverviewComponent } from './components/forms/orders/orders-overvi
 import { PurchaseOverviewComponent } from './components/forms/purchase/purchase-overview/purchase-overview.component';
 import { ResourceOverviewComponent } from './components/forms/resource/resource-overview/resource-overview.component';
 import { CandyShopOverviewComponent } from './components/forms/candyShop/candy-shop-overview/candy-shop-overview.component';
+import { HomeComponent } from './components/menu/home/home.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { CandyShopOverviewComponent } from './components/forms/candyShop/candy-s
     OrdersOverviewComponent,
     PurchaseOverviewComponent,
     ResourceOverviewComponent,
-    CandyShopOverviewComponent
+    CandyShopOverviewComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
