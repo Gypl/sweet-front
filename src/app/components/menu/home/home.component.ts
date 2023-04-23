@@ -1,4 +1,8 @@
-import { Component } from '@angular/core';
+
+import { TemplateRef, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { CandyShop } from 'src/app/models/candyShop';
+import { CandyShopService } from 'src/app/services/candyShop.service';
 
 @Component({
   selector: 'app-home',

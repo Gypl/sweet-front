@@ -1,0 +1,17 @@
+<div class="dropdown">
+  <button class="dropbtn" style="font-size: large;">{{ chosenName }}</button>
+  <div class="dropdown-content">
+    <div *ngFor="let candyShop of candyShops">
+      <ng-template
+        [ngTemplateOutlet]="loadTemplate(candyShop)"
+        [ngTemplateOutletContext]="{ $implicit: candyShop }"
+      >
+      </ng-template>
+    </div>
+  </div>
+</div>
+
+<!--шаблон для чтения-->
+<ng-template #readOnlyTemplate let-candyShop>
+  <a style="cursor: pointer;" (click)="chosenShop(candyShop)">{{ candyShop.name }}</a>
+</ng-template>

@@ -5,32 +5,33 @@ import { Purchase } from "../models/purchase";
 @Injectable()
 export class PurchaseService {
 
-    private url = "http://localhost:8080//api//";
+    private url = "http://localhost:8080/api/";
     private chosenPurchaseId: number = -1;
-    private chosenShopName: string = ""
+    private chosenShopName: string = " "
     constructor(private http: HttpClient) { }
 
     getPurchases() {
-        return this.http.get<Array<Purchase>>(this.url + this.chosenShopName + '//purchase');
+        return this.http.get<Array<Purchase>>(this.url + this.chosenShopName + '/purchase');
     }
     getPurchasesByShop() {
-        return this.http.get<Purchase>(this.url + this.chosenShopName + '//purchase//shop//');
+        return this.http.get<Array<Purchase>>(this.url + this.chosenShopName + '/purchase/shop');
     }
 
     createPurchase(purchase: Purchase) {
+        if (this.chosenShopName === " ") throw '404';
         const myHeaders = new HttpHeaders().set("Content-Type", "application/json");
-        return this.http.post<Purchase>(this.url + this.chosenShopName + '//purchase//create', JSON.stringify(purchase), { headers: myHeaders });
+        return this.http.post<Purchase>(this.url + this.chosenShopName + '/purchase/create', JSON.stringify(purchase), { headers: myHeaders });
     }
     updatePurchase(purchase: Purchase) {
         const myHeaders = new HttpHeaders().set("Content-Type", "application/json");
-        return this.http.put<Purchase>(this.url + this.chosenShopName + '//purchase//update', JSON.stringify(purchase), { headers: myHeaders });
+        return this.http.put<Purchase>(this.url + this.chosenShopName + '/purchase/update', JSON.stringify(purchase), { headers: myHeaders });
     }
     deletePurchase(id_: number) {
-        return this.http.delete<Purchase>(this.url + this.chosenShopName + '//purchase//delete//' + id_);
+        return this.http.delete<Purchase>(this.url + this.chosenShopName + '/purchase/delete/' + id_);
     }
     countPurchases() {
         const myHeaders = new HttpHeaders().set("Content-Type", "application/json");
-        return this.http.post<Purchase>(this.url + this.chosenShopName + "//purchase//count", JSON.stringify(""), { headers: myHeaders });
+        return this.http.post<Purchase>(this.url + this.chosenShopName + "/purchase/count", JSON.stringify(""), { headers: myHeaders });
     }
 
     getShopName() {

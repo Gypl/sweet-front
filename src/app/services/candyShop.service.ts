@@ -5,9 +5,9 @@ import { CandyShop } from "../models/candyShop";
 @Injectable()
 export class CandyShopService {
 
-    private url = "http://localhost:8080//api//candyShop";
+    private url = "http://localhost:8080/api/candyShop";
     private chosenCandyShopId: number = -1;
-    private chosenShopName: string = ""
+    private chosenShopName: string = " "
     constructor(private http: HttpClient) { }
 
     getCandyShops() {
@@ -19,18 +19,18 @@ export class CandyShopService {
 
     createCandyShop(candyShop: CandyShop) {
         const myHeaders = new HttpHeaders().set("Content-Type", "application/json");
-        return this.http.post<CandyShop>(this.url + '//create', JSON.stringify(candyShop), { headers: myHeaders });
+        return this.http.post<CandyShop>(this.url + '/create', JSON.stringify(candyShop), { headers: myHeaders });
     }
     updateCandyShop(candyShop: CandyShop) {
         const myHeaders = new HttpHeaders().set("Content-Type", "application/json");
-        return this.http.put<CandyShop>(this.url + '//update', JSON.stringify(candyShop), { headers: myHeaders });
+        return this.http.put<CandyShop>(this.url + '/update', JSON.stringify(candyShop), { headers: myHeaders });
     }
     deleteCandyShop(id_: number) {
-        return this.http.delete<CandyShop>(this.url + '//delete//' + id_);
+        return this.http.delete<CandyShop>(this.url + '/delete/' + id_);
     }
     countCandyShops() {
         const myHeaders = new HttpHeaders().set("Content-Type", "application/json");
-        return this.http.post<CandyShop>(this.url + "//count", JSON.stringify(""), { headers: myHeaders });
+        return this.http.post<CandyShop>(this.url + "/count", JSON.stringify(""), { headers: myHeaders });
     }
 
     getShopName() {
