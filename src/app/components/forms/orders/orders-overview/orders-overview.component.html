@@ -1,1 +1,153 @@
-<p>orders-overview works!</p>
+<h1>Список закупок</h1>
+<div>
+  <td>
+    <app-switch
+      (buttonClick)="onAdd()"
+      style="margin-bottom: 50px"
+    ></app-switch>
+  </td>
+  <td>
+    <input
+      type="button"
+      value="Добавить"
+      class="btn btn-default"
+      (click)="addOrders()"
+    />
+  </td>
+</div>
+<div
+  class="table-responsive"
+  style="max-width: 1100px; min-width: 1000px; overflow-x: auto"
+>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <td>Id</td>
+        <td>Номер</td>
+        <td>Приготовлен</td>
+        <td>Доставлен</td>
+        <td>Содержимое заказа</td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let orders of orderss">
+        <ng-template
+          [ngTemplateOutlet]="loadTemplate(orders)"
+          [ngTemplateOutletContext]="{ $implicit: orders }"
+        >
+        </ng-template>
+      </tr>
+    </tbody>
+  </table>
+  <div>{{ statusMessage }}</div>
+</div>
+
+<!--шаблон для чтения-->
+<ng-template #readOnlyTemplate let-orders>
+  <td>{{ orders.id }}</td>
+  <td>{{ orders.orderNumber }}</td>
+  <td>
+    <label class="switch"
+      ><input
+        type="checkbox"
+        [(ngModel)]="orders.startReady"
+        disabled=""
+        class="form-control" />
+      <span class="slider round"></span
+    ></label>
+  </td>
+  <td>
+    <label class="switch"
+      ><input
+        type="checkbox"
+        [(ngModel)]="orders.serveReady"
+        disabled=""
+        class="form-control" />
+      <span class="slider round"></span
+    ></label>
+  </td>
+  <td>{{ orders.orderedConfectioneries }}</td>
+  <td>
+    <input
+      type="button"
+      value="Изменить"
+      class="btn btn-default"
+      (click)="editOrders(orders)"
+      style="max-width: 120px"
+    />
+  </td>
+  <td>
+    <input
+      type="button"
+      value="Удалить"
+      (click)="deleteOrders(orders)"
+      class="btn btn-danger"
+      style="max-width: 120px"
+    />
+  </td>
+</ng-template>
+
+<!--шаблон для редактирования-->
+<ng-template #editTemplate>
+  <td>
+    <input
+      type="number"
+      [(ngModel)]="editedOrders.id"
+      readonly
+      disabled
+      class="form-control"
+    />
+  </td>
+  <td>
+    <input
+      type="number"
+      [(ngModel)]="editedOrders.orderNumber"
+      readonly
+      disabled
+      class="form-control"
+    />
+  </td>
+  <td>
+    <label class="switch">
+      <input
+        type="checkbox"
+        [(ngModel)]="editedOrders.startReady"
+        class="form-control"
+      />
+      <span class="slider round"></span>
+    </label>
+  </td>
+  <td>
+    <label class="switch">
+      <input
+        type="checkbox"
+        [(ngModel)]="editedOrders.serveReady"
+        class="form-control"
+      />
+      <span class="slider round"></span>
+    </label>
+  </td>
+  <td>
+    <input
+      type="text"
+      [(ngModel)]="editedOrders.orderedConfectioneries"
+      class="form-control"
+    />
+  </td>
+  <td>
+    <input
+      type="button"
+      value="Сохранить"
+      (click)="saveOrders()"
+      class="btn btn-success"
+    />
+  </td>
+  <td>
+    <input
+      type="button"
+      value="Отмена"
+      (click)="cancel()"
+      class="btn btn-warning"
+    />
+  </td>
+</ng-template>

@@ -7,21 +7,11 @@ import { Resource } from "./resource"
 export class CandyShop {
     id: number
     name: string
-    flowSteets: {
-        [index: number]: FlowSheet
-    }
-    resources: {
-        [index: number]: Resource
-    }
-    confectioneries: {
-        [index: number]: Confectionery
-    }
-    purchases: {
-        [index: number]: Purchase
-    }
-    orders: {
-        [index: number]: Orders
-    }
+    flowSteets: FlowSheet[]
+    resources: Resource[]
+    confectioneries: Confectionery[]
+    purchases: Purchase[]
+    orders: Orders[]
 
     constructor(
         id_: number,
@@ -31,12 +21,12 @@ export class CandyShop {
         confectioneries_: { [index: number]: Confectionery },
         purchases_: { [index: number]: Purchase },
         orders_: { [index: number]: Orders }) {
-            this.id = id_
-            this.name = name_
-            this.flowSteets = flowSteets_
-            this.resources = resources_
-            this.confectioneries = confectioneries_
-            this.purchases = purchases_
-            this.orders = orders_
+            this.id = JSON.parse(JSON.stringify(id_))
+            this.name = JSON.parse(JSON.stringify(name_))
+            this.flowSteets = JSON.parse(JSON.stringify(flowSteets_))
+            this.resources = JSON.parse(JSON.stringify(resources_))
+            this.confectioneries = JSON.parse(JSON.stringify(confectioneries_))
+            this.purchases = JSON.parse(JSON.stringify(purchases_))
+            this.orders = JSON.parse(JSON.stringify(orders_))
     }
 }

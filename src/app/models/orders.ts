@@ -3,7 +3,7 @@ import { OrderedConfectionery } from "./orderedConfectionery"
 export class Orders {
     id: number
     orderNumber: number
-    orderedConfectioneries: { [index: number]: OrderedConfectionery }
+    orderedConfectioneries: OrderedConfectionery[]
     startReady: boolean
     serveReady: boolean
     candyShopId: number
