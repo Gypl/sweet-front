@@ -1,1 +1,20 @@
-<h1 class="text-center">{{ title | titlecase }}</h1>
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Hello Angular</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css"
+    />
+  </head>
+  <body>
+    <div style="float:  left;">
+      <app-sidebar></app-sidebar>
+      <div class="max-w-fit dcontainer mx-auto pt-1 mt-[10px]">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+  </body>
+</html>
