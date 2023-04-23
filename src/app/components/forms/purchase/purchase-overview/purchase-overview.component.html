@@ -1,1 +1,118 @@
-<p>purchase-overview works!</p>
+<h1>Список закупок</h1>
+<div>
+  <td>
+    <app-switch
+      (buttonClick)="onAdd()"
+      style="margin-bottom: 50px"
+    ></app-switch>
+  </td>
+  <td>
+    <input
+      type="button"
+      value="Добавить"
+      class="btn btn-default"
+      (click)="addPurchase()"
+    />
+  </td>
+</div>
+<div
+  class="table-responsive"
+  style="max-width: 1100px; min-width: 1000px; overflow-x: auto"
+>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <td>Id</td>
+        <td>Название</td>
+        <td>Кол-во</td>
+        <td></td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let purchase of purchases">
+        <ng-template
+          [ngTemplateOutlet]="loadTemplate(purchase)"
+          [ngTemplateOutletContext]="{ $implicit: purchase }"
+        >
+        </ng-template>
+      </tr>
+    </tbody>
+  </table>
+  <div>{{ statusMessage }}</div>
+</div>
+
+<!--шаблон для чтения-->
+<ng-template #readOnlyTemplate let-purchase>
+  <td>{{ purchase.id }}</td>
+  <td>{{ purchase.name }}</td>
+  <td style="text-align: right">{{ purchase.amount }}</td>
+  <td style="text-transform: lowercase">{{ purchase.dimension }}</td>
+  <td>
+    <input
+      type="button"
+      value="Изменить"
+      class="btn btn-default"
+      (click)="editPurchase(purchase)"
+      style="max-width: 120px"
+    />
+  </td>
+  <td>
+    <input
+      type="button"
+      value="Удалить"
+      (click)="deletePurchase(purchase)"
+      class="btn btn-danger"
+      style="max-width: 120px"
+    />
+  </td>
+</ng-template>
+
+<!--шаблон для редактирования-->
+<ng-template #editTemplate>
+  <td>
+    <input
+      type="number"
+      [(ngModel)]="editedPurchase.id"
+      readonly
+      disabled
+      class="form-control"
+    />
+  </td>
+  <td>
+    <input
+      type="text"
+      [(ngModel)]="editedPurchase.name"
+      class="form-control"
+    />
+  </td>
+  <td>
+    <input
+      type="number"
+      [(ngModel)]="editedPurchase.amount"
+      class="form-control"
+    />
+  </td>
+  <td>
+    <input
+      type="text"
+      [(ngModel)]="editedPurchase.dimension"
+      class="form-control"
+    />
+  </td>
+  <td>
+    <input
+      type="button"
+      value="Сохранить"
+      (click)="savePurchase()"
+      class="btn btn-success"
+    />
+  </td>
+  <td>
+    <input
+      type="button"
+      value="Отмена"
+      (click)="cancel()"
+      class="btn btn-warning"
+    />
+  </td>
+</ng-template>

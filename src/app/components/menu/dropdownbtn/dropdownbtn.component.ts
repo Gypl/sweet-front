@@ -30,14 +30,14 @@ export class DropdownbtnComponent  implements OnInit {
     this.loadCandyShops()
   }
 
-  //Загрузка кандитерских
+  //Загрузка кондитерских
   private loadCandyShops() {
     this.serv.getCandyShops().subscribe((data: Array<CandyShop>) => {
       this.candyShops = data
     })
   }
 
-  // добавление кандитерской
+  // добавление кондитерской
   addCandyShop() {
     this.editedCandyShop = new CandyShop(0, "", [], [], [], [], []);
     if (this.isNewRecord === false)
@@ -45,7 +45,7 @@ export class DropdownbtnComponent  implements OnInit {
     this.isNewRecord = true;
   }
 
-  // редактирование кандитерской
+  // редактирование кондитерской
   editCandyShop(candyShop: CandyShop) {
     this.editedCandyShop = new CandyShop(candyShop.id, candyShop.name, candyShop.flowSteets, candyShop.resources, candyShop.confectioneries, candyShop.purchases, candyShop.orders);
   }
@@ -57,10 +57,10 @@ export class DropdownbtnComponent  implements OnInit {
       return this.readOnlyTemplate;
     }
   }
-  // сохраняем кандитерской
+  // сохраняем кондитерской
   saveCandyShop() {
     if (this.isNewRecord) {
-      // добавляем кандитерской
+      // добавляем кондитерской
       this.serv.createCandyShop(this.editedCandyShop as CandyShop).subscribe(_ => {
         this.statusMessage = 'Данные успешно добавлены',
           this.loadCandyShops();
@@ -68,7 +68,7 @@ export class DropdownbtnComponent  implements OnInit {
       this.isNewRecord = false;
       this.editedCandyShop = new CandyShop(0, "", [], [], [], [], []);
     } else {
-      // изменяем кандитерской
+      // изменяем кондитерской
       this.serv.updateCandyShop(this.editedCandyShop as CandyShop).subscribe(_ => {
         this.statusMessage = 'Данные успешно обновлены',
           this.loadCandyShops();
@@ -85,14 +85,14 @@ export class DropdownbtnComponent  implements OnInit {
     }
     this.editedCandyShop = new CandyShop(0, "", [], [], [], [], []);
   }
-  // удаление кандитерской
+  // удаление кондитерской
   deleteCandyShop(candyShop: CandyShop) {
     this.serv.deleteCandyShop(candyShop.id).subscribe(_ => {
       this.statusMessage = 'Данные успешно удалены',
         this.loadCandyShops();
     });
   }
-  // выбрана кандитерская
+  // выбрана кондитерская
   chosenShop(candyShop: CandyShop) {
     this.serv.setShopName(candyShop.name);
     this.serv.setCandyShopId(candyShop.id);
