@@ -1,4 +1,4 @@
-<h1>Список закупок</h1>
+<h1>Содержание заказа</h1>
 <div>
   <td>
     <input
@@ -32,6 +32,15 @@
     </tbody>
   </table>
   <div>{{ statusMessage }}</div>
+  
+  <td>
+    <input
+      type="button"
+      value="Сохранить"
+      (click)="saveOrderedConfectionery()"
+      class="btn btn-success"
+    />
+  </td>
 </div>
 
 <!--шаблон для чтения-->
@@ -58,6 +67,7 @@
     />
   </td>
 </ng-template>
+
 
 <!--шаблон для редактирования-->
 <ng-template #editTemplate>
