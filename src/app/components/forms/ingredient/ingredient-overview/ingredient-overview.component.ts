@@ -21,8 +21,6 @@ export class IngredientOverviewComponent implements OnInit {
   ingredients: Array<Ingredient>
   isNewRecord: boolean = false
   statusMessage: string = ""
-  @Input()
-  onOff: boolean = false
 
   constructor(private serv: IngredientService, private servShop: CandyShopService, private servSwitch: switchOnOffService) {
     this.ingredients = new Array<Ingredient>()

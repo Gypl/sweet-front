@@ -34,15 +34,9 @@ export class CandyShopOverviewComponent implements OnInit {
 
   //Загрузка студентов
   private loadCandyShops() {
-    if (this.servSwitch.onOff ) {
-      this.serv.getCandyShopsByShop().subscribe((data: CandyShop) => {
-        this.currentCandyShop = data
-      })
-    } else {
-      this.serv.getCandyShops().subscribe((data: Array<CandyShop>) => {
-        this.candyShops = data
-      })
-    }
+    this.serv.getCandyShops().subscribe((data: Array<CandyShop>) => {
+      this.candyShops = data
+    })
   }
 
   // добавление пользователя
@@ -55,7 +49,7 @@ export class CandyShopOverviewComponent implements OnInit {
 
   // редактирование пользователя
   editCandyShop(candyShop: CandyShop) {
-    this.editedCandyShop = new CandyShop(candyShop.id, candyShop.name, candyShop.flowSteets, candyShop.resources, candyShop.confectioneries, candyShop.purchases, candyShop.orders);
+    this.editedCandyShop = new CandyShop(candyShop.id, candyShop.name, candyShop.flowSheets, candyShop.resources, candyShop.confectioneries, candyShop.purchases, candyShop.orders);
   }
   // загружаем один из двух шаблонов
   loadTemplate(candyShop: CandyShop) {
@@ -105,7 +99,7 @@ export class CandyShopOverviewComponent implements OnInit {
     });
   }
 
-  public onAdd(): void { 
+  public onAdd(): void {
     this.loadCandyShops()
   }
 }

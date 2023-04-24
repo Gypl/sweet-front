@@ -68,6 +68,7 @@
       type="button"
       value="Изменить"
       class="btn btn-default"
+      (click)="setFlowSheetId(flowSheet)"
       (click)="editFlowSheet(flowSheet)"
       style="max-width: 120px"
     />
@@ -103,10 +104,12 @@
   </td>
   <td>
     <input
-      type="number"
-      [(ngModel)]="editedFlowSheet.ingredients"
-      class="form-control"
-      style="text-align: right"
+      routerLink="/flowSheet/ingredient"
+      type="button"
+      value="Изменить ингредиенты"
+      (click)="setFlowSheetId(editedFlowSheet)"
+      (click)="saveFlowSheet()"
+      class="btn btn-warning"
     />
   </td>
   <td>

@@ -7,7 +7,7 @@ import { Resource } from "./resource"
 export class CandyShop {
     id: number
     name: string
-    flowSteets: FlowSheet[]
+    flowSheets: FlowSheet[]
     resources: Resource[]
     confectioneries: Confectionery[]
     purchases: Purchase[]
@@ -16,14 +16,14 @@ export class CandyShop {
     constructor(
         id_: number,
         name_: string,
-        flowSteets_: { [index: number]: FlowSheet },
+        flowSheets_: { [index: number]: FlowSheet },
         resources_: { [index: number]: Resource },
         confectioneries_: { [index: number]: Confectionery },
         purchases_: { [index: number]: Purchase },
         orders_: { [index: number]: Orders }) {
             this.id = JSON.parse(JSON.stringify(id_))
             this.name = JSON.parse(JSON.stringify(name_))
-            this.flowSteets = JSON.parse(JSON.stringify(flowSteets_))
+            this.flowSheets = JSON.parse(JSON.stringify(flowSheets_))
             this.resources = JSON.parse(JSON.stringify(resources_))
             this.confectioneries = JSON.parse(JSON.stringify(confectioneries_))
             this.purchases = JSON.parse(JSON.stringify(purchases_))

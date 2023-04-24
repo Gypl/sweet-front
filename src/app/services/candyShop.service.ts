@@ -7,14 +7,17 @@ export class CandyShopService {
 
     private url = "http://localhost:8080/api/candyShop";
     private chosenCandyShopId: number = -1;
-    private chosenShopName: string = " "
+    private chosenShopName: string = "Выберите кондитерскую"
     constructor(private http: HttpClient) { }
 
     getCandyShops() {
         return this.http.get<Array<CandyShop>>(this.url);
     }
     getCandyShopsByShop() {
-        return this.http.get<CandyShop>(this.url + this.chosenShopName);
+        return this.http.get<Array<CandyShop>>(this.url + '/' + this.chosenShopName);
+    }
+    getCandyShopsById(id_: number) {
+        return this.http.get<CandyShop>(this.url + '/' + id_);
     }
 
     createCandyShop(candyShop: CandyShop) {

@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FlowSheet } from 'src/app/models/flowSheet';
 import { CandyShopService } from 'src/app/services/candyShop.service';
 import { FlowSheetService } from 'src/app/services/flowSheet.service';
+import { IngredientService } from 'src/app/services/ingredient.service';
 import { switchOnOffService } from 'src/app/services/switchOnOff.service';
 
 @Component({
@@ -24,7 +25,7 @@ export class FlowSheetOverviewComponent implements OnInit {
   @Input()
   onOff: boolean = false
 
-  constructor(private serv: FlowSheetService, private servShop: CandyShopService, private servSwitch: switchOnOffService) {
+  constructor(private serv: FlowSheetService, private servIng: IngredientService, private servShop: CandyShopService, private servSwitch: switchOnOffService) {
     this.flowSheets = new Array<FlowSheet>()
     serv.setShopName(servShop.getShopName());
   }
@@ -106,6 +107,11 @@ export class FlowSheetOverviewComponent implements OnInit {
     });
   }
 
+  setFlowSheetId(flowSheet: FlowSheet) {
+    this.serv.setFlowSheetId(flowSheet.id)
+    this.servIng.setFlowSheetId(flowSheet.id)
+  }
+  
   public onAdd(): void { 
     this.loadFlowSheets()
   }

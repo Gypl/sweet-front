@@ -18,11 +18,12 @@ export class IngredientService {
     }
 
     createIngredient(ingredient: Ingredient) {
-        if (this.chosenShopName === " ") throw '404';
         const myHeaders = new HttpHeaders().set("Content-Type", "application/json");
         return this.http.post<Ingredient>(this.url + this.chosenShopName + '/ingredient/' + this.chosenFlowSheetId + '/create', JSON.stringify(ingredient), { headers: myHeaders });
     }
     updateIngredient(ingredient: Ingredient) {
+        console.log(this.chosenFlowSheetId);
+        
         const myHeaders = new HttpHeaders().set("Content-Type", "application/json");
         return this.http.put<Ingredient>(this.url + this.chosenShopName + '/ingredient/update', JSON.stringify(ingredient), { headers: myHeaders });
     }
@@ -41,10 +42,10 @@ export class IngredientService {
         this.chosenShopName = shopName_;
     }
 
-    getIngredientId() {
+    getFlowSheetId() {
         return this.chosenFlowSheetId;
     }
-    setIngredientId(id_: number) {
+    setFlowSheetId(id_: number) {
         this.chosenFlowSheetId = id_;
     }
 }

@@ -38,11 +38,23 @@
     </tbody>
   </table>
   <div>{{ statusMessage }}</div>
+
+  <td>
+    <input
+      routerLink="/flowSheet"
+      type="button"
+      value="Вернуться"
+      class="btn btn-warning"
+    />
+  </td>
 </div>
 
 <!--шаблон для чтения-->
 <ng-template #readOnlyTemplate let-ingredient>
-  
+  <td>{{ ingredient.id }}</td>
+  <td>{{ ingredient.ingredientName }}</td>
+  <td style="text-align: right">{{ ingredient.amount }}</td>
+  <td style="text-transform: lowercase">{{ ingredient.dimension }}</td>
   <td>
     <input
       type="button"
@@ -77,14 +89,14 @@
   <td>
     <input
       type="text"
-      [(ngModel)]="editedIngredient.amount"
+      [(ngModel)]="editedIngredient.ingredientName"
       class="form-control"
     />
   </td>
   <td>
     <input
       type="number"
-      [(ngModel)]="editedIngredient.dimension"
+      [(ngModel)]="editedIngredient.amount"
       class="form-control"
       style="text-align: right"
     />
@@ -92,7 +104,7 @@
   <td>
     <input
       type="text"
-      [(ngModel)]="editedIngredient.ingredientName"
+      [(ngModel)]="editedIngredient.dimension"
       class="form-control"
     />
   </td>

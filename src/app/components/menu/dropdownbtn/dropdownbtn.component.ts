@@ -35,6 +35,7 @@ export class DropdownbtnComponent  implements OnInit {
     this.serv.getCandyShops().subscribe((data: Array<CandyShop>) => {
       this.candyShops = data
     })
+    this.chosenName = this.serv.getShopName()
   }
 
   // добавление кондитерской
@@ -47,7 +48,7 @@ export class DropdownbtnComponent  implements OnInit {
 
   // редактирование кондитерской
   editCandyShop(candyShop: CandyShop) {
-    this.editedCandyShop = new CandyShop(candyShop.id, candyShop.name, candyShop.flowSteets, candyShop.resources, candyShop.confectioneries, candyShop.purchases, candyShop.orders);
+    this.editedCandyShop = new CandyShop(candyShop.id, candyShop.name, candyShop.flowSheets, candyShop.resources, candyShop.confectioneries, candyShop.purchases, candyShop.orders);
   }
   // загружаем один из двух шаблонов
   loadTemplate(candyShop: CandyShop) {

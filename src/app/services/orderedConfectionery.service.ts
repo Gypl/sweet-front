@@ -18,7 +18,6 @@ export class OrderedConfectioneryService {
     }
 
     createOrderedConfectionery(orderedConfectionery: OrderedConfectionery) {
-        if (this.chosenShopName === " ") throw '404';
         const myHeaders = new HttpHeaders().set("Content-Type", "application/json");
         return this.http.post<OrderedConfectionery>(this.url + this.chosenShopName + '/orderedConfectionery/' + this.chosenOrderId + '/create', JSON.stringify(orderedConfectionery), { headers: myHeaders });
     }

@@ -23,7 +23,6 @@
         <td>Готовые изделия</td>
         <td>Закупки</td>
         <td>Заказы</td>
-        <td style="text-align: right">Кол-во</td>
       </tr>
     </thead>
     <tbody>
@@ -48,16 +47,30 @@
     <table class="table table-bordered">
       <thead>
         <tr>
-          <td>Id</td>
           <td>Название</td>
           <td>Ингредиенты</td>
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let flowSheet of candyShop.flowSteets">
-          <td>{{ flowSheet.id }}</td>
+        <tr *ngFor="let flowSheet of candyShop.flowSheets">
           <td>{{ flowSheet.confectioneryName }}</td>
-          <td>{{ flowSheet.ingredients }}</td>
+          <td>
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <td >Название</td>
+                  <td style="text-align: right">Кол-во</td>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let ingredient of flowSheet.ingredients">
+                  <td>{{ ingredient.ingredientName }}</td>
+                  <td style="text-align: right">{{ ingredient.amount }}</td>
+                  <td style="text-transform: lowercase">{{ ingredient.dimension }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </td>
         </tr>
       </tbody>
     </table>
@@ -67,7 +80,6 @@
     <table class="table table-bordered">
       <thead>
         <tr>
-          <td>Id</td>
           <td>Название</td>
           <td style="text-align: right">Кол-во</td>
           <td></td>
@@ -75,7 +87,6 @@
       </thead>
       <tbody>
         <tr *ngFor="let resource of candyShop.resources">
-          <td>{{ resource.id }}</td>
           <td>{{ resource.resourceName }}</td>
           <td style="text-align: right">{{ resource.amount }}</td>
           <td style="text-transform: lowercase">{{ resource.dimension }}</td>
@@ -88,14 +99,12 @@
     <table class="table table-bordered">
       <thead>
         <tr>
-          <td>Id</td>
           <td>Название</td>
           <td>Кол-во (шт.)</td>
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let confectionery of candyShop.confectionerys">
-          <td>{{ confectionery.id }}</td>
+        <tr *ngFor="let confectionery of candyShop.confectioneries">
           <td>{{ confectionery.confectioneryName }}</td>
           <td>{{ confectionery.number }}</td>
         </tr>
@@ -107,14 +116,12 @@
     <table class="table table-bordered">
       <thead>
         <tr>
-          <td>Id</td>
           <td>Название</td>
           <td style="text-align: right">Кол-во</td>
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let purchase of candyShop.purchases">
-          <td>{{ purchase.id }}</td>
           <td>{{ purchase.name }}</td>
           <td style="text-align: right">{{ purchase.amount }}</td>
           <td style="text-transform: lowercase">{{ purchase.dimension }}</td>
@@ -122,12 +129,11 @@
       </tbody>
     </table>
   </td>
-  <!-- orders -->
+  <!-- orders_ -->
   <td>
     <table class="table table-bordered">
       <thead>
         <tr>
-          <td>Id</td>
           <td>Номер</td>
           <td>Приготовлен</td>
           <td>Доставлен</td>
@@ -135,18 +141,33 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let orders of candyShop.orderss">
-          <td>{{ orders.id }}</td>
-          <td>{{ orders.orderNumber }}</td>
-          <td>{{ orders.startReady }}</td>
-          <td>{{ orders.serveReady }}</td>
-          <td>{{ orders.orderedConfectioneries }}</td>
+        <tr *ngFor="let orders_ of candyShop.orders">
+          <td>{{ orders_.orderNumber }}</td>
+          <td>{{ orders_.startReady }}</td>
+          <td>{{ orders_.serveReady }}</td>
+          <td>
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <td>Название</td>
+                  <td>Кол-во (шт.)</td>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let orderedConfectionery of orders_.orderedConfectioneries">
+                  <td>{{ orderedConfectionery.confectioneryName }}</td>
+                  <td>{{ orderedConfectionery.number }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </td>
+          
         </tr>
       </tbody>
     </table>
   </td>
   <!-- buttons -->
-  <!-- <td>
+  <td>
     <input
       type="button"
       value="Изменить"
@@ -154,7 +175,7 @@
       (click)="editCandyShop(candyShop)"
       style="max-width: 120px"
     />
-  </td> -->
+  </td>
   <td>
     <input
       type="button"
