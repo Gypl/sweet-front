@@ -24,9 +24,8 @@ export class CandyShopOverviewComponent implements OnInit {
   @Input()
   onOff: boolean = false
 
-  constructor(private serv: CandyShopService, private servShop: CandyShopService, private servSwitch: switchOnOffService) {
+  constructor(private serv: CandyShopService, private servSwitch: switchOnOffService) {
     this.candyShops = new Array<CandyShop>()
-    serv.setShopName(servShop.getShopName());
   }
 
   ngOnInit() {

@@ -44,7 +44,25 @@
 <ng-template #readOnlyTemplate let-flowSheet>
   <td>{{ flowSheet.id }}</td>
   <td>{{ flowSheet.confectioneryName }}</td>
-  <td>{{ flowSheet.ingredients }}</td>
+  <td>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <td>Id</td>
+          <td >Название</td>
+          <td style="text-align: right">Кол-во</td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let ingredient of flowSheet.ingredients">
+          <td>{{ ingredient.id }}</td>
+          <td>{{ ingredient.ingredientName }}</td>
+          <td style="text-align: right">{{ ingredient.amount }}</td>
+          <td style="text-transform: lowercase">{{ ingredient.dimension }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </td>
   <td>
     <input
       type="button"

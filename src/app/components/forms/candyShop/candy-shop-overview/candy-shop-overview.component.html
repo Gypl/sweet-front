@@ -11,13 +11,18 @@
 </div>
 <div
   class="table-responsive"
-  style="max-width: 1100px; min-width: 1000px; overflow-x: auto"
+  style="max-width: 1800px; min-width: 1000px; overflow-x: auto"
 >
   <table class="table table-striped">
     <thead>
       <tr>
         <td>Id</td>
-        <td>Название</td>
+        <td>Название кондитерской</td>
+        <td>Рецепты</td>
+        <td>Запасы на складе</td>
+        <td>Готовые изделия</td>
+        <td>Закупки</td>
+        <td>Заказы</td>
         <td style="text-align: right">Кол-во</td>
       </tr>
     </thead>
@@ -38,9 +43,110 @@
 <ng-template #readOnlyTemplate let-candyShop>
   <td>{{ candyShop.id }}</td>
   <td>{{ candyShop.name }}</td>
-  <td style="text-align: right">{{ candyShop.amount }}</td>
-  <td style="text-transform: lowercase">{{ candyShop.dimension }}</td>
+  <!-- flowSheet -->
   <td>
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <td>Id</td>
+          <td>Название</td>
+          <td>Ингредиенты</td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let flowSheet of candyShop.flowSteets">
+          <td>{{ flowSheet.id }}</td>
+          <td>{{ flowSheet.confectioneryName }}</td>
+          <td>{{ flowSheet.ingredients }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </td>
+  <!-- resource -->
+  <td>
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <td>Id</td>
+          <td>Название</td>
+          <td style="text-align: right">Кол-во</td>
+          <td></td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let resource of candyShop.resources">
+          <td>{{ resource.id }}</td>
+          <td>{{ resource.resourceName }}</td>
+          <td style="text-align: right">{{ resource.amount }}</td>
+          <td style="text-transform: lowercase">{{ resource.dimension }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </td>
+  <!-- confectionery -->
+  <td>
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <td>Id</td>
+          <td>Название</td>
+          <td>Кол-во (шт.)</td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let confectionery of candyShop.confectionerys">
+          <td>{{ confectionery.id }}</td>
+          <td>{{ confectionery.confectioneryName }}</td>
+          <td>{{ confectionery.number }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </td>
+  <!-- purchase -->
+  <td>
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <td>Id</td>
+          <td>Название</td>
+          <td style="text-align: right">Кол-во</td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let purchase of candyShop.purchases">
+          <td>{{ purchase.id }}</td>
+          <td>{{ purchase.name }}</td>
+          <td style="text-align: right">{{ purchase.amount }}</td>
+          <td style="text-transform: lowercase">{{ purchase.dimension }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </td>
+  <!-- orders -->
+  <td>
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <td>Id</td>
+          <td>Номер</td>
+          <td>Приготовлен</td>
+          <td>Доставлен</td>
+          <td>Содержимое заказа</td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let orders of candyShop.orderss">
+          <td>{{ orders.id }}</td>
+          <td>{{ orders.orderNumber }}</td>
+          <td>{{ orders.startReady }}</td>
+          <td>{{ orders.serveReady }}</td>
+          <td>{{ orders.orderedConfectioneries }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </td>
+  <!-- buttons -->
+  <!-- <td>
     <input
       type="button"
       value="Изменить"
@@ -48,7 +154,7 @@
       (click)="editCandyShop(candyShop)"
       style="max-width: 120px"
     />
-  </td>
+  </td> -->
   <td>
     <input
       type="button"
@@ -75,21 +181,6 @@
     <input
       type="text"
       [(ngModel)]="editedCandyShop.name"
-      class="form-control"
-    />
-  </td>
-  <td>
-    <input
-      type="number"
-      [(ngModel)]="editedCandyShop"
-      class="form-control"
-      style="text-align: right"
-    />
-  </td>
-  <td>
-    <input
-      type="text"
-      [(ngModel)]="editedCandyShop"
       class="form-control"
     />
   </td>

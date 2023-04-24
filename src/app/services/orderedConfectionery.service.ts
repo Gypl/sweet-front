@@ -41,10 +41,10 @@ export class OrderedConfectioneryService {
         this.chosenShopName = shopName_;
     }
 
-    getOrderedConfectioneryId() {
+    getOrderId() {
         return this.chosenOrderId;
     }
-    setOrderedConfectioneryId(id_: number) {
+    setOrderId(id_: number) {
         this.chosenOrderId = id_;
     }
 }

@@ -2,6 +2,7 @@ import { Input, TemplateRef, ViewChild } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
 import { Orders } from 'src/app/models/orders';
 import { CandyShopService } from 'src/app/services/candyShop.service';
+import { OrderedConfectioneryService } from 'src/app/services/orderedConfectionery.service';
 import { OrdersService } from 'src/app/services/orders.service';
 import { switchOnOffService } from 'src/app/services/switchOnOff.service';
 
@@ -24,7 +25,7 @@ export class OrdersOverviewComponent implements OnInit {
   @Input()
   onOff: boolean = false
 
-  constructor(private serv: OrdersService, private servShop: CandyShopService, private servSwitch: switchOnOffService) {
+  constructor(private serv: OrdersService, private servShop: CandyShopService, private servOC: OrderedConfectioneryService, private servSwitch: switchOnOffService) {
     this.orderss = new Array<Orders>()
     serv.setShopName(servShop.getShopName());
   }
@@ -104,6 +105,11 @@ export class OrdersOverviewComponent implements OnInit {
       this.statusMessage = 'Данные успешно удалены',
         this.loadOrderss();
     });
+  }
+
+  setOrdersId(orders: Orders) {
+    this.serv.setOrdersId(orders.id)
+    this.servOC.setOrderId(orders.id)
   }
 
   public onAdd(): void { 

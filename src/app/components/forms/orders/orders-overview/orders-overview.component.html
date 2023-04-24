@@ -66,13 +66,31 @@
       <span class="slider round"></span
     ></label>
   </td>
-  <td>{{ orders.orderedConfectioneries }}</td>
+  <td>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <td>Id</td>
+          <td>Название</td>
+          <td>Кол-во (шт.)</td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let orderedConfectionery of orders.orderedConfectionerys">
+          <td>{{ orderedConfectionery.id }}</td>
+          <td>{{ orderedConfectionery.confectioneryName }}</td>
+          <td>{{ orderedConfectionery.number }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </td>
   <td>
     <input
+      routerLink="/orders/orderedConfectionery"
       type="button"
       value="Изменить"
       class="btn btn-default"
-      (click)="editOrders(orders)"
+      (click)="setOrdersId(orders)"
       style="max-width: 120px"
     />
   </td>
