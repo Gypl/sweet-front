@@ -17,9 +17,9 @@
 </div>
 <div
   class="table-responsive"
-  style="max-width: 1100px; min-width: 1000px; overflow-x: auto"
+  style="max-width: 1100px; min-width: 1000px; height: 100%; overflow-x: auto"
 >
-  <table class="table table-striped">
+  <table class="table table-striped" >
     <thead>
       <tr>
         <td>Id</td>
@@ -50,6 +50,7 @@
       type="button"
       value="Изменить"
       class="btn btn-default"
+      (click)="setShopId(confectionery)"
       (click)="editConfectionery(confectionery)"
       style="max-width: 120px"
     />
@@ -77,11 +78,25 @@
     />
   </td>
   <td>
-    <input
-      type="text"
-      [(ngModel)]="editedConfectionery.confectioneryName"
-      class="form-control"
-    />
+    
+    <div class="dropdown">
+      <button class="dropbtn">{{ chosenNameFS }}
+        </button>
+      <div class="dropdown-content">
+        <div *ngFor="let flowSheet of flowSheets">
+          <ng-template
+            [ngTemplateOutlet]="loadTemplateFS()"
+            [ngTemplateOutletContext]="{ $implicit: flowSheet }"
+          >
+          </ng-template>
+        </div>
+      </div>
+    </div>
+    <!--шаблон для чтения-->
+    <ng-template #dropTemplate let-flowSheet>
+      <a style="cursor: pointer;" (click)="chosenFlowSheet(flowSheet)">{{ flowSheet.confectioneryName }}</a>
+    </ng-template>
+    
   </td>
   <td>
     <input

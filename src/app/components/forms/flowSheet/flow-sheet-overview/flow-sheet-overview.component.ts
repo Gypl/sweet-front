@@ -22,9 +22,7 @@ export class FlowSheetOverviewComponent implements OnInit {
   flowSheets: Array<FlowSheet>
   isNewRecord: boolean = false
   statusMessage: string = ""
-  @Input()
-  onOff: boolean = false
-
+  
   constructor(private serv: FlowSheetService, private servIng: IngredientService, private servShop: CandyShopService, private servSwitch: switchOnOffService) {
     this.flowSheets = new Array<FlowSheet>()
     serv.setShopName(servShop.getShopName());

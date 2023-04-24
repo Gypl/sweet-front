@@ -86,11 +86,11 @@
   </td>
   <td>
     <input
-      routerLink="/orders/orderedConfectionery"
       type="button"
       value="Изменить"
       class="btn btn-default"
       (click)="setOrdersId(orders)"
+      (click)="editOrders(orders)"
       style="max-width: 120px"
     />
   </td>
@@ -145,9 +145,12 @@
   </td>
   <td>
     <input
-      type="text"
-      [(ngModel)]="editedOrders.orderedConfectioneries"
-      class="form-control"
+      routerLink="/orders/orderedConfectionery"
+      type="button"
+      value="Изменить ингредиенты"
+      (click)="setOrdersId(editedOrders)"
+      (click)="saveOrders()"
+      class="btn btn-warning"
     />
   </td>
   <td>
