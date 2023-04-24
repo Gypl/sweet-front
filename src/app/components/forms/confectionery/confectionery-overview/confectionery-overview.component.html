@@ -1,1 +1,110 @@
-<p>confectionery-overview works!</p>
+<h1>Список готовой продукции</h1>
+<div>
+  <td>
+    <app-switch
+      (buttonClick)="onAdd()"
+      style="margin-bottom: 50px"
+    ></app-switch>
+  </td>
+  <td>
+    <input
+      type="button"
+      value="Добавить"
+      class="btn btn-default"
+      (click)="addConfectionery()"
+    />
+  </td>
+</div>
+<div
+  class="table-responsive"
+  style="max-width: 1100px; min-width: 1000px; overflow-x: auto"
+>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <td>Id</td>
+        <td>Название</td>
+        <td>Кол-во (шт.)</td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let confectionery of confectionerys">
+        <ng-template
+          [ngTemplateOutlet]="loadTemplate(confectionery)"
+          [ngTemplateOutletContext]="{ $implicit: confectionery }"
+        >
+        </ng-template>
+      </tr>
+    </tbody>
+  </table>
+  <div>{{ statusMessage }}</div>
+</div>
+
+<!--шаблон для чтения-->
+<ng-template #readOnlyTemplate let-confectionery>
+  <td>{{ confectionery.id }}</td>
+  <td>{{ confectionery.confectioneryName }}</td>
+  <td>{{ confectionery.number }}</td>
+  <td>
+    <input
+      type="button"
+      value="Изменить"
+      class="btn btn-default"
+      (click)="editConfectionery(confectionery)"
+      style="max-width: 120px"
+    />
+  </td>
+  <td>
+    <input
+      type="button"
+      value="Удалить"
+      (click)="deleteConfectionery(confectionery)"
+      class="btn btn-danger"
+      style="max-width: 120px"
+    />
+  </td>
+</ng-template>
+
+<!--шаблон для редактирования-->
+<ng-template #editTemplate>
+  <td>
+    <input
+      type="number"
+      [(ngModel)]="editedConfectionery.id"
+      readonly
+      disabled
+      class="form-control"
+    />
+  </td>
+  <td>
+    <input
+      type="text"
+      [(ngModel)]="editedConfectionery.confectioneryName"
+      class="form-control"
+    />
+  </td>
+  <td>
+    <input
+      type="number"
+      [(ngModel)]="editedConfectionery.number"
+      class="form-control"
+      style="text-align: right"
+    />
+  </td>
+  <td>
+    <input
+      type="button"
+      value="Сохранить"
+      (click)="saveConfectionery()"
+      class="btn btn-success"
+    />
+  </td>
+  <td>
+    <input
+      type="button"
+      value="Отмена"
+      (click)="cancel()"
+      class="btn btn-warning"
+    />
+  </td>
+</ng-template>

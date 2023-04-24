@@ -13,7 +13,7 @@ export class OrderedConfectioneryService {
     getOrderedConfectionerys() {
         return this.http.get<Array<OrderedConfectionery>>(this.url + this.chosenShopName + '/orderedConfectionery');
     }
-    getOrderedConfectionerysByShop() {
+    getOrderedConfectionerysByOrders() {
         return this.http.get<Array<OrderedConfectionery>>(this.url + this.chosenShopName + '/orderedConfectionery/' + this.chosenOrderId);
     }
 

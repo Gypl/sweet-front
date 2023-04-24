@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Resource } from 'src/app/models/resource';
 import { CandyShopService } from 'src/app/services/candyShop.service';
 import { ResourceService } from 'src/app/services/resource.service';
+import { switchOnOffService } from 'src/app/services/switchOnOff.service';
 
 @Component({
   selector: 'app-resource-overview',
@@ -23,7 +24,7 @@ export class ResourceOverviewComponent implements OnInit {
   @Input()
   onOff: boolean = false
 
-  constructor(private serv: ResourceService, private servShop: CandyShopService) {
+  constructor(private serv: ResourceService, private servShop: CandyShopService, private servSwitch: switchOnOffService) {
     this.resources = new Array<Resource>()
     serv.setShopName(servShop.getShopName());
   }
@@ -34,7 +35,7 @@ export class ResourceOverviewComponent implements OnInit {
 
   //Загрузка студентов
   private loadResources() {
-    if (this.onOff) {
+    if (this.servSwitch.onOff ) {
       this.serv.getResourcesByShop().subscribe((data: Array<Resource>) => {
         this.resources = data
       })
@@ -105,10 +106,7 @@ export class ResourceOverviewComponent implements OnInit {
     });
   }
 
-  public onAdd(): void {
-    if (this.onOff) {
-      this.onOff = false
-    } else this.onOff = true
+  public onAdd(): void { 
     this.loadResources()
   }
 }

@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Purchase } from 'src/app/models/purchase';
 import { CandyShopService } from 'src/app/services/candyShop.service';
 import { PurchaseService } from 'src/app/services/purchase.service';
+import { switchOnOffService } from 'src/app/services/switchOnOff.service';
 
 @Component({
   selector: 'app-purchase-overview',
@@ -23,7 +24,7 @@ export class PurchaseOverviewComponent implements OnInit {
   @Input()
   onOff: boolean = false
 
-  constructor(private serv: PurchaseService, private servShop: CandyShopService) {
+  constructor(private serv: PurchaseService, private servShop: CandyShopService, private servSwitch: switchOnOffService) {
     this.purchases = new Array<Purchase>()
     serv.setShopName(servShop.getShopName());
   }
@@ -34,7 +35,7 @@ export class PurchaseOverviewComponent implements OnInit {
 
   //Загрузка студентов
   private loadPurchases() {
-    if (this.onOff) {
+    if (this.servSwitch.onOff ) {
       this.serv.getPurchasesByShop().subscribe((data: Array<Purchase>) => {
         this.purchases = data
       })
@@ -105,10 +106,7 @@ export class PurchaseOverviewComponent implements OnInit {
     });
   }
 
-  public onAdd(): void {
-    if (this.onOff) {
-      this.onOff = false
-    } else this.onOff = true
+  public onAdd(): void { 
     this.loadPurchases()
   }
 }

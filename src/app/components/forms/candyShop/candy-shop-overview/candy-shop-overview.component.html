@@ -1,1 +1,112 @@
-<p>candy-shop-overview works!</p>
+<h1>Список кондитерских</h1>
+<div>
+  <td>
+    <input
+      type="button"
+      value="Добавить"
+      class="btn btn-default"
+      (click)="addCandyShop()"
+    />
+  </td>
+</div>
+<div
+  class="table-responsive"
+  style="max-width: 1100px; min-width: 1000px; overflow-x: auto"
+>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <td>Id</td>
+        <td>Название</td>
+        <td style="text-align: right">Кол-во</td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let candyShop of candyShops">
+        <ng-template
+          [ngTemplateOutlet]="loadTemplate(candyShop)"
+          [ngTemplateOutletContext]="{ $implicit: candyShop }"
+        >
+        </ng-template>
+      </tr>
+    </tbody>
+  </table>
+  <div>{{ statusMessage }}</div>
+</div>
+
+<!--шаблон для чтения-->
+<ng-template #readOnlyTemplate let-candyShop>
+  <td>{{ candyShop.id }}</td>
+  <td>{{ candyShop.name }}</td>
+  <td style="text-align: right">{{ candyShop.amount }}</td>
+  <td style="text-transform: lowercase">{{ candyShop.dimension }}</td>
+  <td>
+    <input
+      type="button"
+      value="Изменить"
+      class="btn btn-default"
+      (click)="editCandyShop(candyShop)"
+      style="max-width: 120px"
+    />
+  </td>
+  <td>
+    <input
+      type="button"
+      value="Удалить"
+      (click)="deleteCandyShop(candyShop)"
+      class="btn btn-danger"
+      style="max-width: 120px"
+    />
+  </td>
+</ng-template>
+
+<!--шаблон для редактирования-->
+<ng-template #editTemplate>
+  <td>
+    <input
+      type="number"
+      [(ngModel)]="editedCandyShop.id"
+      readonly
+      disabled
+      class="form-control"
+    />
+  </td>
+  <td>
+    <input
+      type="text"
+      [(ngModel)]="editedCandyShop.name"
+      class="form-control"
+    />
+  </td>
+  <td>
+    <input
+      type="number"
+      [(ngModel)]="editedCandyShop"
+      class="form-control"
+      style="text-align: right"
+    />
+  </td>
+  <td>
+    <input
+      type="text"
+      [(ngModel)]="editedCandyShop"
+      class="form-control"
+    />
+  </td>
+  <td>
+    <input
+      type="button"
+      value="Сохранить"
+      (click)="saveCandyShop()"
+      class="btn btn-success"
+    />
+  </td>
+  <td>
+    <input
+      type="button"
+      value="Отмена"
+      (click)="cancel()"
+      class="btn btn-warning"
+    />
+  </td>
+</ng-template>

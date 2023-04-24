@@ -28,6 +28,7 @@ import { CandyShopOverviewComponent } from './components/forms/candyShop/candy-s
 import { HomeComponent } from './components/menu/home/home.component';
 import { DropdownbtnComponent } from './components/menu/dropdownbtn/dropdownbtn.component';
 import { SwitchComponent } from './components/menu/switch/switch.component';
+import { switchOnOffService } from './services/switchOnOff.service';
 
 @NgModule({
   declarations: [
@@ -62,7 +63,8 @@ import { SwitchComponent } from './components/menu/switch/switch.component';
     OrderedConfectioneryService,
     OrdersService,
     PurchaseService,
-    ResourceService
+    ResourceService,
+    switchOnOffService
   ],
   bootstrap: [AppComponent]
 })
