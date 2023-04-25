@@ -139,6 +139,9 @@ export class ConfectioneryOverviewComponent implements OnInit {
   chosenFlowSheet(flowSheet: FlowSheet) {
     this.chosenNameFS = flowSheet.confectioneryName;
     this.editedConfectionery.confectioneryName = this.chosenNameFS;
+    this.servShop.getCandyShopsById(flowSheet.candyShopId).subscribe((data: CandyShop) => {
+      this.servFS.setShopName(data.name);
+    })
   }
 
   setShopId(confectionery: Confectionery) {

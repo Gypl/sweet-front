@@ -1,7 +1,9 @@
 import { Input, TemplateRef, ViewChild } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
+import { CandyShop } from 'src/app/models/candyShop';
 import { Resource } from 'src/app/models/resource';
 import { CandyShopService } from 'src/app/services/candyShop.service';
+import { FlowSheetService } from 'src/app/services/flowSheet.service';
 import { ResourceService } from 'src/app/services/resource.service';
 import { switchOnOffService } from 'src/app/services/switchOnOff.service';
 
@@ -24,7 +26,7 @@ export class ResourceOverviewComponent implements OnInit {
   @Input()
   onOff: boolean = false
 
-  constructor(private serv: ResourceService, private servShop: CandyShopService, private servSwitch: switchOnOffService) {
+  constructor(private serv: ResourceService, private servShop: CandyShopService, private servSwitch: switchOnOffService, private servFS: FlowSheetService) {
     this.resources = new Array<Resource>()
     serv.setShopName(servShop.getShopName());
   }
@@ -105,6 +107,7 @@ export class ResourceOverviewComponent implements OnInit {
         this.loadResources();
     });
   }
+
 
   public onAdd(): void { 
     this.loadResources()

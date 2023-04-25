@@ -81,11 +81,24 @@
     />
   </td>
   <td>
-    <input
-      type="text"
-      [(ngModel)]="editedOrderedConfectionery.confectioneryName"
-      class="form-control"
-    />
+    <div class="dropdown">
+      <button class="dropbtn">{{ chosenNameFS }}
+        </button>
+      <div class="dropdown-content">
+        <div *ngFor="let flowSheet of flowSheets">
+          <ng-template
+            [ngTemplateOutlet]="loadTemplateFS()"
+            [ngTemplateOutletContext]="{ $implicit: flowSheet }"
+          >
+          </ng-template>
+        </div>
+      </div>
+    </div>
+    <!--шаблон для чтения-->
+    <ng-template #dropTemplate let-flowSheet>
+      <a style="cursor: pointer;" (click)="chosenFlowSheet(flowSheet)">{{ flowSheet.confectioneryName }}</a>
+    </ng-template>
+    
   </td>
   <td>
     <input

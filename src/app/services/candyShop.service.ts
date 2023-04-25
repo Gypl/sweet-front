@@ -17,7 +17,7 @@ export class CandyShopService {
         return this.http.get<Array<CandyShop>>(this.url + '/' + this.chosenShopName);
     }
     getCandyShopsById(id_: number) {
-        return this.http.get<CandyShop>(this.url + '/' + id_);
+        return this.http.get<CandyShop>(this.url + '/id/' + id_);
     }
 
     createCandyShop(candyShop: CandyShop) {

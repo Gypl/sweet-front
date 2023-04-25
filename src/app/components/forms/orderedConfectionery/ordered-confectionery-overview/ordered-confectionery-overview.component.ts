@@ -1,7 +1,9 @@
 import { Input, TemplateRef, ViewChild } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
+import { FlowSheet } from 'src/app/models/flowSheet';
 import { OrderedConfectionery } from 'src/app/models/orderedConfectionery';
 import { CandyShopService } from 'src/app/services/candyShop.service';
+import { FlowSheetService } from 'src/app/services/flowSheet.service';
 import { OrderedConfectioneryService } from 'src/app/services/orderedConfectionery.service';
 import { switchOnOffService } from 'src/app/services/switchOnOff.service';
 
@@ -17,20 +19,46 @@ export class OrderedConfectioneryOverviewComponent implements OnInit {
   @ViewChild('editTemplate', { static: false })
   editTemplate!: TemplateRef<any> | null;
 
+  @ViewChild('dropTemplate', { static: false })
+  dropTemplate!: TemplateRef<any> | null;
+
   public editedOrderedConfectionery: OrderedConfectionery = new OrderedConfectionery(0, "", 0, 0)
   orderedConfectionerys: Array<OrderedConfectionery>
+  flowSheets: Array<FlowSheet>
   isNewRecord: boolean = false
   statusMessage: string = ""
-  @Input()
-  onOff: boolean = false
+  chosenNameFS: string = ""
 
-  constructor(private serv: OrderedConfectioneryService, private servShop: CandyShopService, private servSwitch: switchOnOffService) {
+  constructor(private serv: OrderedConfectioneryService, private servFS: FlowSheetService, private servShop: CandyShopService, private servSwitch: switchOnOffService) {
     this.orderedConfectionerys = new Array<OrderedConfectionery>()
+    this.flowSheets = new Array<FlowSheet>()
     serv.setShopName(servShop.getShopName());
   }
 
   ngOnInit() {
     this.loadOrderedConfectionerys()
+    this.loadFlowSheets()
+  }
+
+  //Загрузка рецептов
+  private loadFlowSheets() {
+    this.servFS.getFlowSheetsByShop().subscribe((data: Array<FlowSheet>) => {
+      this.flowSheets = data
+    })
+    // if (!this.isNewRecord)
+    //   this.servShop.getCandyShopsByShop().subscribe((data: Array<CandyShop>) => {
+    //     this.flowSheets = data[0].flowSheets
+    //   })
+    // else
+    //   this.servShop.getCandyShopsById(this.serv.getShopId()).subscribe((data: CandyShop) => {
+    //     this.flowSheets = data.flowSheets
+    //   })
+    this.chosenNameFS = "______"
+  }
+
+  // загружаем один из двух шаблонов
+  loadTemplateFS() {
+    return this.dropTemplate;
   }
 
   //Загрузка студентов
@@ -98,6 +126,15 @@ export class OrderedConfectioneryOverviewComponent implements OnInit {
       this.statusMessage = 'Данные успешно удалены',
         this.loadOrderedConfectionerys();
     });
+  }
+  // выбрана кондитерская
+  chosenFlowSheet(flowSheet: FlowSheet) {
+    this.chosenNameFS = flowSheet.confectioneryName;
+    this.editedOrderedConfectionery.confectioneryName = this.chosenNameFS;
+  }
+
+  setShopId(orderedConfectionery: OrderedConfectionery) {
+    this.serv.setOrderId(orderedConfectionery.ordersId);
   }
 
   public onAdd(): void {

@@ -7,6 +7,7 @@ export class IngredientService {
 
     private url = "http://localhost:8080/api/";
     private chosenFlowSheetId: number = -1;
+    private chosenShopId: number = -1;
     private chosenShopName: string = " "
     constructor(private http: HttpClient) { }
 
@@ -47,5 +48,11 @@ export class IngredientService {
     }
     setFlowSheetId(id_: number) {
         this.chosenFlowSheetId = id_;
+    }
+    getShopId() {
+        return this.chosenShopId;
+    }
+    setShopId(id_: number) {
+        this.chosenShopId = id_;
     }
 }

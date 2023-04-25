@@ -1,12 +1,6 @@
 <h1>Список ингредиентов</h1>
 <div>
   <td>
-    <app-switch
-      (buttonClick)="onAdd()"
-      style="margin-bottom: 50px"
-    ></app-switch>
-  </td>
-  <td>
     <input
       type="button"
       value="Добавить"
@@ -17,7 +11,7 @@
 </div>
 <div
   class="table-responsive"
-  style="max-width: 1100px; min-width: 1000px; overflow-x: auto"
+  style="max-width: 1100px; min-width: 1000px; overflow-x: auto; height: 100%;"
 >
   <table class="table table-striped">
     <thead>
@@ -87,11 +81,24 @@
     />
   </td>
   <td>
-    <input
-      type="text"
-      [(ngModel)]="editedIngredient.ingredientName"
-      class="form-control"
-    />
+    <div class="dropdown">
+      <button class="dropbtn">{{ chosenNameR }}</button>
+      <div class="dropdown-content">
+        <div *ngFor="let resource of resources">
+          <ng-template
+            [ngTemplateOutlet]="loadTemplateR()"
+            [ngTemplateOutletContext]="{ $implicit: resource }"
+          >
+          </ng-template>
+        </div>
+      </div>
+    </div>
+    <!--шаблон для чтения-->
+    <ng-template #dropTemplate let-resource>
+      <a style="cursor: pointer" (click)="chosenResource(resource)">{{
+        resource.resourceName
+      }}</a>
+    </ng-template>
   </td>
   <td>
     <input
@@ -104,6 +111,8 @@
   <td>
     <input
       type="text"
+      readonly
+      disabled
       [(ngModel)]="editedIngredient.dimension"
       class="form-control"
     />
