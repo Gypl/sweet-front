@@ -1,11 +1,12 @@
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Resource } from "../models/resource";
+import { environment } from "src/environments/environment";
 
 @Injectable()
 export class ResourceService {
 
-    private url = "http://localhost:8080/api/";
+    private url = environment.apiUrl;
     private chosenResourceId: number = -1;
     private chosenShopName: string = " "
     constructor(private http: HttpClient) { }

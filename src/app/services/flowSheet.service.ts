@@ -1,11 +1,12 @@
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { FlowSheet } from "../models/flowSheet";
+import { environment } from "src/environments/environment";
 
 @Injectable()
 export class FlowSheetService {
 
-    private url = "http://localhost:8080/api/";
+    private url = environment.apiUrl;
     private chosenFlowSheetId: number = -1;
     private chosenShopName: string = " "
     constructor(private http: HttpClient) { }

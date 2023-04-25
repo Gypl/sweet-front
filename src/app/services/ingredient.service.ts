@@ -1,11 +1,12 @@
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Ingredient } from "../models/ingredient";
+import { environment } from "src/environments/environment";
 
 @Injectable()
 export class IngredientService {
 
-    private url = "http://localhost:8080/api/";
+    private url = environment.apiUrl;
     private chosenFlowSheetId: number = -1;
     private chosenShopId: number = -1;
     private chosenShopName: string = " "

@@ -1,11 +1,12 @@
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { CandyShop } from "../models/candyShop";
+import { environment } from "src/environments/environment";
 
 @Injectable()
 export class CandyShopService {
 
-    private url = "http://localhost:8080/api/candyShop";
+    private url = environment.apiUrl + "candyShop";
     private chosenCandyShopId: number = -1;
     private chosenShopName: string = "Выберите кондитерскую"
     constructor(private http: HttpClient) { }
