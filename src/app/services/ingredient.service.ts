@@ -20,21 +20,18 @@ export class IngredientService {
     }
 
     createIngredient(ingredient: Ingredient) {
-        const myHeaders = new HttpHeaders().set("Content-Type", "application/json");
-        return this.http.post<Ingredient>(this.url + this.chosenShopName + '/ingredient/' + this.chosenFlowSheetId + '/create', JSON.stringify(ingredient), { headers: myHeaders });
+        return this.http.post<Ingredient>(this.url + this.chosenShopName + '/ingredient/' + this.chosenFlowSheetId + '/create' , (ingredient)  );
     }
     updateIngredient(ingredient: Ingredient) {
         console.log(this.chosenFlowSheetId);
-        
-        const myHeaders = new HttpHeaders().set("Content-Type", "application/json");
-        return this.http.put<Ingredient>(this.url + this.chosenShopName + '/ingredient/update', JSON.stringify(ingredient), { headers: myHeaders });
+
+        return this.http.put<Ingredient>(this.url + this.chosenShopName + '/ingredient/update' , (ingredient)  );
     }
     deleteIngredient(id_: number) {
         return this.http.delete<Ingredient>(this.url + this.chosenShopName + '/ingredient/delete/' + id_);
     }
     countIngredients() {
-        const myHeaders = new HttpHeaders().set("Content-Type", "application/json");
-        return this.http.post<Ingredient>(this.url + this.chosenShopName + "/ingredient/count", JSON.stringify(""), { headers: myHeaders });
+        return this.http.post<Ingredient>(this.url + this.chosenShopName + "/ingredient/count" , ("")  );
     }
 
     getShopName() {

@@ -20,19 +20,16 @@ export class OrdersService {
 
     createOrders(orders: Orders) {
         if (this.chosenShopName === " ") throw '404';
-        const myHeaders = new HttpHeaders().set("Content-Type", "application/json");
-        return this.http.post<Orders>(this.url + this.chosenShopName + '/orders/create', JSON.stringify(orders), { headers: myHeaders });
+        return this.http.post<Orders>(this.url + this.chosenShopName + '/orders/create' , (orders)  );
     }
     updateOrders(orders: Orders) {
-        const myHeaders = new HttpHeaders().set("Content-Type", "application/json");
-        return this.http.put<Orders>(this.url + this.chosenShopName + '/orders/update', JSON.stringify(orders), { headers: myHeaders });
+        return this.http.put<Orders>(this.url + this.chosenShopName + '/orders/update' , (orders)  );
     }
     deleteOrders(id_: number) {
         return this.http.delete<Orders>(this.url + this.chosenShopName + '/orders/delete/' + id_);
     }
     countOrderss() {
-        const myHeaders = new HttpHeaders().set("Content-Type", "application/json");
-        return this.http.post<Orders>(this.url + this.chosenShopName + "/orders/count", JSON.stringify(""), { headers: myHeaders });
+        return this.http.post<Orders>(this.url + this.chosenShopName + "/orders/count" , ("")  );
     }
 
     getShopName() {

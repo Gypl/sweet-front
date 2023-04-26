@@ -12,10 +12,6 @@ import { HomeComponent } from './components/menu/home/home.component';
 import { PageNotFoundComponent } from './components/menu/page-not-found/page-not-found.component';
 
 const routes: Routes = [
-  // { path: 'groups/edit', component: GroupStudentsDialogComponent },
-  // { path: 'groups', component: GroupOverviewComponent },
-  // { path: 'students', component: StudentOverviewComponent },
-  // { path: 'login', component: LoginComponent },
   { path: 'candyShop', component: CandyShopOverviewComponent },
   { path: 'flowSheet', component: FlowSheetOverviewComponent },
   { path: 'flowSheet/ingredient', component: IngredientOverviewComponent },

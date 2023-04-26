@@ -20,19 +20,16 @@ export class FlowSheetService {
 
     createFlowSheet(flowSheet: FlowSheet) {
         if (this.chosenShopName === " ") throw '404';
-        const myHeaders = new HttpHeaders().set("Content-Type", "application/json");
-        return this.http.post<FlowSheet>(this.url + this.chosenShopName + '/flowSheet/create', JSON.stringify(flowSheet), { headers: myHeaders });
+        return this.http.post<FlowSheet>(this.url + this.chosenShopName + '/flowSheet/create' , (flowSheet)  );
     }
     updateFlowSheet(flowSheet: FlowSheet) {
-        const myHeaders = new HttpHeaders().set("Content-Type", "application/json");
-        return this.http.put<FlowSheet>(this.url + this.chosenShopName + '/flowSheet/update', JSON.stringify(flowSheet), { headers: myHeaders });
+        return this.http.put<FlowSheet>(this.url + this.chosenShopName + '/flowSheet/update' , (flowSheet)  );
     }
     deleteFlowSheet(id_: number) {
         return this.http.delete<FlowSheet>(this.url + this.chosenShopName + '/flowSheet/delete/' + id_);
     }
     countFlowSheets() {
-        const myHeaders = new HttpHeaders().set("Content-Type", "application/json");
-        return this.http.post<FlowSheet>(this.url + this.chosenShopName + "/flowSheet/count", JSON.stringify(""), { headers: myHeaders });
+        return this.http.post<FlowSheet>(this.url + this.chosenShopName + "/flowSheet/count" , ("")  );
     }
 
     getShopName() {

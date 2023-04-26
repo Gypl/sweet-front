@@ -21,19 +21,16 @@ export class ConfectioneryService {
 
     createConfectionery(confectionery: Confectionery) {
         if (this.chosenShopName === " ") throw '404';
-        const myHeaders = new HttpHeaders().set("Content-Type", "application/json");
-        return this.http.post<Confectionery>(this.url + this.chosenShopName + '/confectionery/create', JSON.stringify(confectionery), { headers: myHeaders });
+        return this.http.post<Confectionery>(this.url + this.chosenShopName + '/confectionery/create' , (confectionery)  );
     }
     updateConfectionery(confectionery: Confectionery) {
-        const myHeaders = new HttpHeaders().set("Content-Type", "application/json");
-        return this.http.put<Confectionery>(this.url + this.chosenShopName + '/confectionery/update', JSON.stringify(confectionery), { headers: myHeaders });
+        return this.http.put<Confectionery>(this.url + this.chosenShopName + '/confectionery/update' , (confectionery)  );
     }
     deleteConfectionery(id_: number) {
         return this.http.delete<Confectionery>(this.url + this.chosenShopName + '/confectionery/delete/' + id_);
     }
     countConfectionerys() {
-        const myHeaders = new HttpHeaders().set("Content-Type", "application/json");
-        return this.http.post<Confectionery>(this.url + this.chosenShopName + "/confectionery/count", JSON.stringify(""), { headers: myHeaders });
+        return this.http.post<Confectionery>(this.url + this.chosenShopName + "/confectionery/count" , ("")  );
     }
 
     getShopName() {

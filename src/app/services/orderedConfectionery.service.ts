@@ -19,19 +19,16 @@ export class OrderedConfectioneryService {
     }
 
     createOrderedConfectionery(orderedConfectionery: OrderedConfectionery) {
-        const myHeaders = new HttpHeaders().set("Content-Type", "application/json");
-        return this.http.post<OrderedConfectionery>(this.url + this.chosenShopName + '/orderedConfectionery/' + this.chosenOrderId + '/create', JSON.stringify(orderedConfectionery), { headers: myHeaders });
+        return this.http.post<OrderedConfectionery>(this.url + this.chosenShopName + '/orderedConfectionery/' + this.chosenOrderId + '/create' , (orderedConfectionery)  );
     }
     updateOrderedConfectionery(orderedConfectionery: OrderedConfectionery) {
-        const myHeaders = new HttpHeaders().set("Content-Type", "application/json");
-        return this.http.put<OrderedConfectionery>(this.url + this.chosenShopName + '/orderedConfectionery/update', JSON.stringify(orderedConfectionery), { headers: myHeaders });
+        return this.http.put<OrderedConfectionery>(this.url + this.chosenShopName + '/orderedConfectionery/update' , (orderedConfectionery)  );
     }
     deleteOrderedConfectionery(id_: number) {
         return this.http.delete<OrderedConfectionery>(this.url + this.chosenShopName + '/orderedConfectionery/delete/' + id_);
     }
     countOrderedConfectionerys() {
-        const myHeaders = new HttpHeaders().set("Content-Type", "application/json");
-        return this.http.post<OrderedConfectionery>(this.url + this.chosenShopName + "/orderedConfectionery/count", JSON.stringify(""), { headers: myHeaders });
+        return this.http.post<OrderedConfectionery>(this.url + this.chosenShopName + "/orderedConfectionery/count" , ("")  );
     }
 
     getShopName() {

@@ -20,19 +20,16 @@ export class ResourceService {
 
     createResource(resource: Resource) {
         if (this.chosenShopName === " ") throw '404';
-        const myHeaders = new HttpHeaders().set("Content-Type", "application/json");
-        return this.http.post<Resource>(this.url + this.chosenShopName + '/resource/create', JSON.stringify(resource), { headers: myHeaders });
+        return this.http.post<Resource>(this.url + this.chosenShopName + '/resource/create' , (resource)  );
     }
     updateResource(resource: Resource) {
-        const myHeaders = new HttpHeaders().set("Content-Type", "application/json");
-        return this.http.put<Resource>(this.url + this.chosenShopName + '/resource/update', JSON.stringify(resource), { headers: myHeaders });
+        return this.http.put<Resource>(this.url + this.chosenShopName + '/resource/update' , (resource)  );
     }
     deleteResource(id_: number) {
         return this.http.delete<Resource>(this.url + this.chosenShopName + '/resource/delete/' + id_);
     }
     countResources() {
-        const myHeaders = new HttpHeaders().set("Content-Type", "application/json");
-        return this.http.post<Resource>(this.url + this.chosenShopName + "/resource/count", JSON.stringify(""), { headers: myHeaders });
+        return this.http.post<Resource>(this.url + this.chosenShopName + "/resource/count" , ("")  );
     }
 
     getShopName() {

@@ -22,19 +22,16 @@ export class CandyShopService {
     }
 
     createCandyShop(candyShop: CandyShop) {
-        const myHeaders = new HttpHeaders().set("Content-Type", "application/json");
-        return this.http.post<CandyShop>(this.url + '/create', JSON.stringify(candyShop), { headers: myHeaders });
+        return this.http.post<CandyShop>(this.url + '/create' , (candyShop)  );
     }
     updateCandyShop(candyShop: CandyShop) {
-        const myHeaders = new HttpHeaders().set("Content-Type", "application/json");
-        return this.http.put<CandyShop>(this.url + '/update', JSON.stringify(candyShop), { headers: myHeaders });
+        return this.http.put<CandyShop>(this.url + '/update' , (candyShop)  );
     }
     deleteCandyShop(id_: number) {
         return this.http.delete<CandyShop>(this.url + '/delete/' + id_);
     }
     countCandyShops() {
-        const myHeaders = new HttpHeaders().set("Content-Type", "application/json");
-        return this.http.post<CandyShop>(this.url + "/count", JSON.stringify(""), { headers: myHeaders });
+        return this.http.post<CandyShop>(this.url + "/count" , ("")  );
     }
 
     getShopName() {

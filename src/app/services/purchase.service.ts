@@ -20,19 +20,16 @@ export class PurchaseService {
 
     createPurchase(purchase: Purchase) {
         if (this.chosenShopName === " ") throw '404';
-        const myHeaders = new HttpHeaders().set("Content-Type", "application/json");
-        return this.http.post<Purchase>(this.url + this.chosenShopName + '/purchase/create', JSON.stringify(purchase), { headers: myHeaders });
+        return this.http.post<Purchase>(this.url + this.chosenShopName + '/purchase/create' , (purchase)  );
     }
     updatePurchase(purchase: Purchase) {
-        const myHeaders = new HttpHeaders().set("Content-Type", "application/json");
-        return this.http.put<Purchase>(this.url + this.chosenShopName + '/purchase/update', JSON.stringify(purchase), { headers: myHeaders });
+        return this.http.put<Purchase>(this.url + this.chosenShopName + '/purchase/update' , (purchase)  );
     }
     deletePurchase(id_: number) {
         return this.http.delete<Purchase>(this.url + this.chosenShopName + '/purchase/delete/' + id_);
     }
     countPurchases() {
-        const myHeaders = new HttpHeaders().set("Content-Type", "application/json");
-        return this.http.post<Purchase>(this.url + this.chosenShopName + "/purchase/count", JSON.stringify(""), { headers: myHeaders });
+        return this.http.post<Purchase>(this.url + this.chosenShopName + "/purchase/count" , ("")  );
     }
 
     getShopName() {
